@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'admin', canActivate: [PatientGuard], loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'doctor', canActivate: [PatientGuard], loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule) },
   { path: 'otp', component: OtpPageComponent },
-  { path: 'error-page', component: ErrorPageComponent }
+  { path: 'error-page', component: ErrorPageComponent },
+  { path: '**', component: ErrorPageComponent }
 ];
 
 @NgModule({

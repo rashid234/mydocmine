@@ -183,17 +183,12 @@ namespace MyDoctor.Service.Services
             string Email = _configuration["otp:mail"];
             string password = _configuration["otp:password"];
             var response = new ServiceResponse<bool>();
-            //creating the message in which we store message details
-           MimeMessage message = new MimeMessage();
-            //details of sender
+            MimeMessage message = new MimeMessage();
             message.From.Add(new MailboxAddress("Admin", Email));
-            // details of reciever
             message.To.Add(new MailboxAddress("user", "rashirashidka2@gmail.com"));
             Random Random = new Random();
             otp = 704144;
-            //email subject
             message.Subject = "MyDoctor OTP for Registration";
-            //body of email
             message.Body = new TextPart("plain")
             {
                 Text = @$" Welcome to Mydoctor Patient management Service.
@@ -202,29 +197,24 @@ namespace MyDoctor.Service.Services
                         In Case Of Emergency.Feel Free To Contact Us."
             };
 
-            // creating a mail client
             MailKit.Net.Smtp.SmtpClient client = new MailKit.Net.Smtp.SmtpClient();
             try
             {
-                // connecting to gmail smtp and using the 465 port and ssl enabled is true.
                 client.Connect("smtp.gmail.com", 587);
-                // Authenticate sender using email and password.
                 client.Authenticate(Email, password);
                 client.Send(message);
             }
             catch (Exception ex)
             {
-                // if any exception
                 response.AddError("", "Otp problem");
                 return response;
             }
             finally
             {
-                // disconnect the client
                 client.Disconnect(true);
-                // dispose client object
                 client.Dispose();
             }
+
             return response;
         }
 

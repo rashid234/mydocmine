@@ -21,8 +21,9 @@ export class HomeComponent {
       next: (res: any) => {
         console.log(res);
         this.appointments = res.result
-        console.log(this.appointments);
-        
+        this.appointments.forEach((element: any) => {
+          element.time = this.AppointmentService.timeConvert(element.time)
+        });
       },
       error: (res: any) => {
         this.router.navigateByUrl('/error-page');

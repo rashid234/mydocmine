@@ -1,13 +1,13 @@
 <div class="container-fluid fullscreen row">
     <div class="col-lg-4 mt-3 doctor-info d-flex flex-column align-items-center">
-        <h4>Doctor Details</h4><img src="./assets/images/doctor1png.png" alt="">
+        <h4>Doctor Details</h4><img src="../../../assets/images/doctor-avatar.png" alt="">
         <h5 name="docname">Dr.{{doctorData.name}}</h5>
         <p>{{doctorData.departmentName}}</p><br>
         <p>Email Address:</p>
         <p>{{doctorData.email}}</p>
         <p>Actual Fee: {{doctorData.fee | currency:'INR'}}</p><br>
         <p>Fee including tax(5%): {{feeWithTax | currency:'INR'}}</p><br>
-        <p>Fee in peak hours(9:00AM - 11PM): {{feeInPeekTime | currency:'INR'}}</p><br>
+        <p>Fee in peak hours(9:00AM - 11AM): {{feeInPeekTime | currency:'INR'}}</p><br>
     </div>
     <div class="col-lg-8">
         <br>
@@ -22,7 +22,7 @@
                 <button type="button" class="btn btn-sm btn-outline-primary" (click)="navigate(1)">Next</button>
             </div>
             <ngb-datepicker #d1 [(ngModel)]="dateChoosed" #c1="ngModel" class="custom-datepicker px-3 pt-1 pb-3" #dp
-                [minDate]="todayDate" [displayMonths]="1" outsideDays="hidden" [weekdays]="false" navigation="none">
+                [minDate]="todayDate" [displayMonths]="1" [maxDate]="limitDate" outsideDays="hidden" [weekdays]="false" navigation="none">
                 <ng-template ngbDatepickerContent>
                     <div *ngFor="let month of dp.state.months">
                         <div class="text-primary p-1 fw-bold">{{ i18n.getMonthShortName(month.month) }} {{ month.year }}

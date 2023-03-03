@@ -34,7 +34,13 @@ export class AppointmentBookingComponent implements OnInit {
   todayDate = {
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
-    day: new Date().getDate()
+    day: new Date().getDate() + 1
+  };
+
+  limitDate = {
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 4,
+    day: new Date().getDate() + 1
   };
 
   timeSlot: number | null;
